@@ -4,8 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="./node_modules/simplemde/dist/simplemde.min.css"
+    />
+    <script src="./node_modules/simplemde/dist/simplemde.min.js"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+      }
+      .CodeMirror {
+        flex: 1;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <textarea id="editor"></textarea>
+    <script>
+      const editor = new SimpleMDE({
+        element: document.getElementById('editor'),
+      });
+    </script>
   </body>
 </html>
