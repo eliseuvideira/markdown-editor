@@ -1,7 +1,8 @@
 {
   "name": "markdown-editor",
   "version": "1.0.0",
-  "main": "build/index.js",
+  "homepage": "https://github.com/eliseuvideira/markdown-editor",
+  "main": "./build/index.js",
   "author": "Eliseu Videira <eliseuvideira1@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -11,13 +12,27 @@
     "tslint": "^5.20.1",
     "typescript": "^3.7.3"
   },
-  "scripts": {
-    "build": "tsc",
-    "dev": "concurrently -n tsc,el \"yarn watch\" \"yarn start\"",
-    "start": "electron .",
-    "watch": "tsc --watch"
-  },
   "dependencies": {
     "simplemde": "^1.11.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "yarn build && concurrently -n tsc,el \"yarn watch\" \"yarn start\"",
+    "start": "NODE_ENV=development electron . --disable-gpu",
+    "watch": "tsc --watch",
+    "build:linux": "electron-builder --linux --dir",
+    "dist:linux": "electron-builder --linux"
+  },
+  "build": {
+    "appId": "com.markdown.editor",
+    "linux": {
+      "category": "Utility",
+      "target": [
+        "deb"
+      ]
+    },
+    "files": [
+      "./build/**/*"
+    ]
   }
 }

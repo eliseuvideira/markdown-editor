@@ -28,6 +28,27 @@
       const editor = new SimpleMDE({
         element: document.getElementById('editor'),
       });
+
+      const { ipcRenderer } = require('electron');
+      ipcRenderer.on('editor-event', (event, arg) => {
+        console.log(arg);
+        event.sender.send('editor-reply', `Recieved ${arg}`);
+        if (arg === 'toggle-bold') {
+          editor.toggleBold();
+        } else if (arg === 'toggle-italic') {
+          editor.toggleItalic();
+        } else if (arg === 'toggle-strike-through') {
+          editor.toggleStrikethrough();
+        } else if (arg === 'save') {
+          event.sender.send('save', editor.value());
+        }
+      });
+      ipcRenderer.on('load', (event, content) => {
+        if (content) {
+          editor.value(content);
+        }
+      });
+      ipcRenderer.send('editor-reply', 'Page loaded');
     </script>
   </body>
 </html>

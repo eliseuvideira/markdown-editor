@@ -1,7 +1,10 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import { join } from 'path';
+import menu from './menu';
 
 let window: BrowserWindow;
+
+Menu.setApplicationMenu(menu);
 
 app.on('ready', () => {
   window = new BrowserWindow({
