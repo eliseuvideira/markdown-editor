@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from 'electron';
+import { app, BrowserWindow, Menu, autoUpdater } from 'electron';
 import { join } from 'path';
 import menu from './menu';
 
@@ -15,4 +15,5 @@ app.on('ready', () => {
   window.on('ready-to-show', () => {
     window.show();
   });
+  autoUpdater.checkForUpdates();
 });

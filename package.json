@@ -13,6 +13,7 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
+    "electron-updater": "^4.2.0",
     "simplemde": "^1.11.2"
   },
   "scripts": {
@@ -21,7 +22,8 @@
     "start": "NODE_ENV=development electron . --disable-gpu",
     "watch": "tsc --watch",
     "build:linux": "electron-builder --linux --dir",
-    "dist:linux": "electron-builder --linux"
+    "dist:linux": "electron-builder --linux",
+    "publish:github": "electron-builder --linux -p always"
   },
   "build": {
     "appId": "com.markdown.editor",
@@ -33,6 +35,11 @@
     },
     "files": [
       "./build/**/*"
-    ]
+    ],
+    "publish": {
+      "provider": "github",
+      "owner": "eliseuvideira",
+      "repo": "markdown-editor"
+    }
   }
 }
