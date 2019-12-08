@@ -1,6 +1,6 @@
 {
   "name": "markdown-editor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/eliseuvideira/markdown-editor",
   "main": "./build/index.js",
   "author": "Eliseu Videira <eliseuvideira1@gmail.com>",
