@@ -142,16 +142,16 @@ if (process.platform === 'darwin') {
   });
 }
 
-if (process.env.NODE_ENV === 'development') {
-  template.push({
-    label: 'Debugging',
-    submenu: [
-      { label: 'Dev Tools', role: 'toggleDevTools' },
-      { type: 'separator' },
-      { role: 'reload' },
-    ],
-  });
-}
+// if (process.env.NODE_ENV === 'development') {
+template.push({
+  label: 'Debugging',
+  submenu: [
+    { label: 'Dev Tools', role: 'toggleDevTools' },
+    { type: 'separator' },
+    { role: 'reload' },
+  ],
+});
+// }
 
 const menu = Menu.buildFromTemplate(template);
 
