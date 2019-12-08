@@ -34,7 +34,8 @@
       ]
     },
     "files": [
-      "./build/**/*"
+      "./build/**/*",
+      "./index.html"
     ],
     "publish": {
       "provider": "github",
