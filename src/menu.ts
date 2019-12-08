@@ -4,7 +4,7 @@ import {
   shell,
   MenuItemConstructorOptions,
   BrowserWindow,
-  globalShortcut,
+  // globalShortcut,
   ipcMain,
   dialog,
 } from 'electron';
@@ -36,12 +36,12 @@ const openFile = async () => {
 };
 
 app.on('ready', () => {
-  globalShortcut.register('CommandOrControl+S', () => {
-    saveFile();
-  });
-  globalShortcut.register('CommandOrControl+O', () => {
-    openFile();
-  });
+  // globalShortcut.register('CommandOrControl+S', () => {
+  //   saveFile();
+  // });
+  // globalShortcut.register('CommandOrControl+O', () => {
+  //   openFile();
+  // });
 });
 
 ipcMain.on('editor-reply', (event, arg) => {

@@ -28,10 +28,8 @@
       const editor = new SimpleMDE({
         element: document.getElementById('editor'),
       });
-
       const { ipcRenderer } = require('electron');
       ipcRenderer.on('editor-event', (event, arg) => {
-        console.log(arg);
         event.sender.send('editor-reply', `Recieved ${arg}`);
         if (arg === 'toggle-bold') {
           editor.toggleBold();
@@ -49,6 +47,30 @@
         }
       });
       ipcRenderer.send('editor-reply', 'Page loaded');
+
+      document.addEventListener('dragstart', (event) => event.preventDefault());
+      document.addEventListener('dragover', (event) => event.preventDefault());
+      document.addEventListener('dragleave', (event) => event.preventDefault());
+      document.addEventListener('drop', (event) => event.preventDefault());
+
+      const dropHandler = (event) => {
+        event.preventDefault();
+
+        if (event.dataTransfer.items) {
+          if (event.dataTransfer.items[0].kind === 'file') {
+            const file = event.dataTransfer.items[0].getAsFile();
+            if (file.type === 'text/markdown') {
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                editor.value(e.target.result);
+              };
+              reader.readAsText(file);
+            }
+          }
+        }
+      };
+
+      document.body.addEventListener('drop', dropHandler);
     </script>
   </body>
 </html>
